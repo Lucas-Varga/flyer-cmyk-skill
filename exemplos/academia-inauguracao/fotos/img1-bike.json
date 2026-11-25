@@ -1,0 +1,19 @@
+{
+  "modo": "gerar",
+  "provedor": "openai",
+  "modelo": "gpt-image-2.6-sunburst",
+  "prompt": "Wide editorial photograph of a friendly indoor cycling class in a bright, modern neighborhood gym, seen from a slightly low three-quarter angle at the side of the room. Six to eight ordinary riders of mixed ages (early 20s to late 50s), mixed body types (including plus-size), mixed ethnicities and genders, wearing simple everyday workout clothes (t-shirts, leggings, shorts), pedaling with relaxed smiles or light concentration. One clearly mature rider (around 55, grey hair) sits in the right third of the frame; a beginner-looking rider is laughing and chatting with the person beside her. Faces are small in the frame, mostly in profile or three-quarter view, with gentle motion blur on legs and wheels: no close-ups, nobody looking at the camera, no recognizable or celebrity-like faces. Composition, 3:2 landscape: the riders occupy the middle band of the frame, from about 15% to 60% of the image height, kept inside the central 80% of the width; the top-left quarter is a dark, out-of-focus ceiling and wall in deep navy shadow (empty space reserved for a logo); the bottom 40% is a plain dark floor with very little detail, falling into shadow (it will be faded to navy and covered by text). Lighting: warm orange and amber rim light and soft practical lights from the right side, deep navy-blue shadows (#05101A); color palette limited to navy, warm orange (#E05F31), amber (#EC9638) and natural skin tones; no green, purple or neon light. 35 mm lens, f/2.8, shallow depth of field, natural fine film grain, photorealistic. Realistic hands, coherent bike mechanics (handlebars, pedals, flywheels). Strictly no text, letters, numbers, logos, brand marks, screens with interface, signage, posters or building facade. No sweat drama, no bodybuilders, no shirtless people, no extremely toned or idealized bodies, no before/after. Absolutely no text, letters, numbers, words, signage, logos, brand names or watermarks anywhere in the image.",
+  "origem": [],
+  "pixels": [
+    1824,
+    1424
+  ],
+  "uso_mm": [
+    154.0,
+    121.0
+  ],
+  "ppi_no_uso": 299,
+  "gerado_em": "2026-11-25T09:06:48.634478",
+  "tamanho_pedido": "1824x1424",
+  "prompt_revisado": null
+}

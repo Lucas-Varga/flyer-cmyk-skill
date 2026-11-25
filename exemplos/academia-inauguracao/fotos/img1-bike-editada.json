@@ -1,0 +1,21 @@
+{
+  "modo": "editar",
+  "provedor": "openai",
+  "modelo": "gpt-image-2.6-sunburst",
+  "prompt": "Change only the large windows on the right side into a solid dark navy wall with two warm orange wall lights, matching the existing wall on the left. Keep every person, bike, pose, face, clothing, lighting direction and the framing exactly the same.",
+  "origem": [
+    "fotos/img1-bike.png"
+  ],
+  "pixels": [
+    1824,
+    1424
+  ],
+  "uso_mm": [
+    154.0,
+    121.0
+  ],
+  "ppi_no_uso": 299,
+  "gerado_em": "2026-11-25T09:08:52.967292",
+  "tamanho_pedido": "1824x1424",
+  "prompt_revisado": null
+}

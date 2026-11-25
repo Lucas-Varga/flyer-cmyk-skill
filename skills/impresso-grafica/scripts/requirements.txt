@@ -8,3 +8,6 @@ pymupdf
 opencv-python-headless
 pillow
 numpy
+# geração de imagem com IA (opcional)
+openai
+httpx

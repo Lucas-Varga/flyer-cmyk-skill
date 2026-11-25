@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .DS_Store
 saida/
+.env
+.env.*
+!.env.exemplo
+.cache/
