@@ -1,0 +1,31 @@
+Create a finished Instagram Stories image, vertical 9:16, 1080 x 1920 pixels, for the grand opening of a neighborhood gym. It is a vertical adaptation of the approved feed post shown in IMAGE 1.
+
+REFERENCES: IMAGE 1 is the approved feed post: use it ONLY as the style reference (the same night-blue base, the same orange-to-amber diagonal band with the word INAUGURAÇÃO, the same typefaces, the same photo treatment and mood). Do not copy any of its other text, and do not copy its layout proportions; rebuild the layout for 9:16 as described below. IMAGE 2 is the logo. IMAGE 3 is the clean original photo.
+
+LOGO: Reproduce the logo from IMAGE 2 EXACTLY (same orange peak mark, same "ÁPICE" lettering in white, same "ACADEMIA" in orange underneath, same proportions and colors); do not redraw, restyle or invent any other logo. Place it once, horizontally centered, with its top edge at about 16% of the canvas height (just below the top 14% zone); logo width about 34% of the canvas width, on a night-blue #0B1A2A veil of at least 70% opacity so it is fully legible. Do not take the logo from IMAGE 1; use IMAGE 2.
+
+PHOTO: Use IMAGE 3 as the main photo, keeping the people exactly as they are: same faces, ages, body types, skin tones, genders, hair, clothes and expressions; do not slim, retouch, rejuvenate, add muscle definition or change any person. Reframe it for the vertical format: the photo fills the full width from the top edge down to about 55% of the height. Prefer showing fewer people complete rather than many people cut; no face may be cut by an edge or covered by the logo or text. Do not extend the scene with invented people. A night-blue #0B1A2A veil darkens the top 24% of the photo, and the bottom of the photo melts smoothly into solid #0B1A2A between about 42% and 56% of the height.
+
+LAYOUT (top to bottom):
+1. Top 14% (0 to 270 px): photo only, absolutely no text and no logo.
+2. Logo at about 16% to 22% of the height.
+3. Photo continues down to about 55%.
+4. At about 52% to 59% of the height, the bold diagonal band, tilted about 4 degrees upward to the right, bleeding off both side edges, filled with a smooth gradient from orange #E05F31 (left) to amber #EC9638 (right), with INAUGURAÇÃO centered inside in a heavy bold condensed sans-serif, all caps, night-blue #0B1A2A. This is the largest text (cap height about 12% of the canvas width) and the single focal point.
+5. From about 61% to 72% of the height, on solid #0B1A2A, centered: the remaining text lines of the text block in white #FFFFFF; headline lines in bold condensed sans-serif (cap height about 5% of the width), the date in bold condensed sans-serif about the same size, any supporting line in clean sans-serif.
+6. From about 73% to 80% of the height: an EMPTY calm night-blue area, with nothing in it, reserved for an interactive link sticker that will be added later in the app. Do not draw any button, sticker, arrow or icon there.
+7. The notice at about 80% to 81.5% of the height, white clean sans-serif, the smallest text (cap height about 3% of the width).
+8. Bottom 18% (1574 to 1920 px): solid night-blue only, absolutely no text and no logo.
+
+SAFE AREAS: Keep all text and the logo at least 6% away from every edge (at least 64 px from the left and right edges). Keep the top 14% and bottom 18% free of text and logo. Only the photo, the background and the diagonal band may reach the edges.
+
+TEXT: Render this Brazilian Portuguese text EXACTLY, with all accents, capitalization and punctuation as written, each item on its own line as listed:
+- Band: "INAUGURAÇÃO"
+- Headline line 1: "Aulas experimentais grátis"
+- Headline line 2: "o dia todo"
+- Date: "6 de março · 8h às 18h"
+- Notice: "Imagem ilustrativa."
+Spell check: INAUGURAÇÃO (Ç and Ã), grátis (á), março (ç), às (à); the middle dot · is a separator; "8h" and "18h" use a lowercase h.
+
+COLOR AND CONTRAST: Only night-blue #0B1A2A, white #FFFFFF, and the orange #E05F31 to amber #EC9638 gradient. Orange/amber appears only in the diagonal band and in the logo's peak, never as text color, outlines or background elsewhere (at most 10% of the area). All text other than INAUGURAÇÃO is white on solid night-blue; any text that overlaps the photo must sit on a night-blue veil of at least 60% opacity. The image must read clearly at 360 px wide.
+
+RESTRICTIONS: No other text, no extra words, no fake logos, no watermark. Exactly 15 words of text in total; do not add any word from IMAGE 1 that is not listed above, and no addresses, phone numbers, URLs, @handles, hashtags, emojis, icons, buttons, stickers, countdowns or progress bars. No signage, facade, "ÁPICE" lettering or readable text in the photo. Keep the real, ordinary, diverse people from the photo; no idealized or bodybuilder bodies, no pain or strain expressions. Hands, handlebars, pedals and saddles must be anatomically and mechanically correct.

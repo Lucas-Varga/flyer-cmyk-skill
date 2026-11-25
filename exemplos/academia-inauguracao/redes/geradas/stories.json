@@ -1,0 +1,22 @@
+{
+  "modo": "editar",
+  "provedor": "openai",
+  "modelo": "gpt-image-2.6-sunburst",
+  "prompt": "Edit IMAGE 1 minimally. In the white text line near the middle that currently reads \"6 de março - 8h às 18h\", the short horizontal dash between \"março\" and \"8h\" is WRONG. Erase that horizontal dash completely and draw in its place a small solid ROUND white dot (a bullet, like \"•\", about the size of the dot of the letter i, vertically centered on the line). The corrected line must read: \"6 de março • 8h às 18h\". Everything else in the image must remain pixel-identical: photo, people, logo (identical to IMAGE 2), band, all other text, colors and positions.",
+  "origem": [
+    "geradas/stories-tentativa1.png",
+    "referencias/logo-escuro.png"
+  ],
+  "pixels": [
+    1088,
+    1920
+  ],
+  "uso_mm": [
+    91.44,
+    162.56
+  ],
+  "ppi_no_uso": 300,
+  "gerado_em": "2026-11-25T13:36:33.614901",
+  "tamanho_pedido": "1088x1920",
+  "prompt_revisado": null
+}

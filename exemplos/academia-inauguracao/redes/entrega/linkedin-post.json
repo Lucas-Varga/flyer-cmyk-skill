@@ -1,0 +1,18 @@
+{
+  "formato": "linkedin-post",
+  "descricao": "LinkedIn post horizontal 1,91:1",
+  "px": [
+    1200,
+    627
+  ],
+  "origem_px": [
+    1200,
+    640
+  ],
+  "ampliada": false,
+  "corte_percentual": 2.0,
+  "interface_cobre_px": {
+    "topo": 0,
+    "base": 0
+  }
+}

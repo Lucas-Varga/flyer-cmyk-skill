@@ -1,19 +1,23 @@
 {
   "name": "flyer-cmyk",
-  "version": "1.1.1",
-  "description": "Flyers e impressos promocionais prontos para a gráfica: agentes de marketing, psicologia e design; CMYK e Pantone, degradês, acabamentos especiais, imagens com IA e PDF/X-1a validado.",
+  "version": "1.2.0",
+  "description": "Peças promocionais com agentes de marketing, psicologia e design: impressos prontos para a gráfica (CMYK, Pantone, acabamentos, PDF/X-1a) e posts para redes sociais gerados com IA usando o logo e as fotos do usuário.",
   "author": {
     "name": "Lucas Varga"
   },
   "license": "MIT",
   "keywords": [
-    "flyer",
+    "ai-image",
     "cmyk",
-    "print",
-    "pdf-x",
+    "flyer",
     "grafica",
     "impressao",
-    "marketing"
+    "instagram",
+    "marketing",
+    "pdf-x",
+    "print",
+    "redes-sociais",
+    "social-media"
   ],
   "icon": "./.claude-plugin/icon.png",
   "repository": "https://github.com/Lucas-Varga/flyer-cmyk-skill"

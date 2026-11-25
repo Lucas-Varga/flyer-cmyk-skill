@@ -11,19 +11,35 @@ real PDF is CMYK; the images above are screen previews. · Flyer de teste feito 
 skill para uma academia fictícia, com imagem por IA. O PDF real sai em CMYK; as imagens
 acima são a prévia de tela.</sub>
 
+![Social media posts generated with the posts-redes-sociais skill / posts gerados com a skill posts-redes-sociais](docs/exemplo-posts.jpg)
+
+<sub>Same campaign, social media version (Instagram feed and Stories, LinkedIn), generated
+by AI with the brand's logo and photo as references, text checked letter by letter. ·
+Mesma campanha na versão para redes sociais (feed e Stories do Instagram, LinkedIn),
+gerada por IA com o logo e a foto da marca como referência e o texto conferido letra por
+letra.</sub>
+
 ---
 
 ## English
 
-**A Claude skill that guides you from idea to a print-ready flyer for any campaign: true
-CMYK and Pantone, gradients, special finishes, optional AI imagery and a validated
-PDF/X-1a.**
+**Two Claude skills for promotional pieces, for any campaign, working with marketing,
+marketing-psychology and design agents:**
+
+| Skill | For | Output | Time |
+|---|---|---|---|
+| `impresso-grafica` | **print** (flyer, leaflet, folder, poster, card) | vector art in true CMYK/Pantone, gradients, special finishes, validated PDF/X-1a + finish masks | 30–60 min |
+| `posts-redes-sociais` | **social media / digital** (Instagram feed and Stories, Facebook, WhatsApp, LinkedIn…) | AI-generated images using **your logo and photos as references**, exact size per platform, checked text, captions, hashtags and alt text | 10–20 min |
+
+Both start by asking **where the piece is going**: print, social media, or **both**. For
+"both", the print piece is made first and the posts reuse the same briefing, agent
+documents and approved images.
 
 > The skill talks to you in **Brazilian Portuguese** and its print defaults (formats, paper
 > names, legal notes) follow Brazilian print shops. The technical output (CMYK PDF/X-1a,
 > finish masks) is standard worldwide.
 
-### What it does
+### What `impresso-grafica` does (print)
 
 You ask something like *"make a flyer for my store's grand opening to send to the print
 shop"*, and Claude:
@@ -68,18 +84,36 @@ shop"*, and Claude:
 8. **Validates automatically**: no RGB, no fonts, no transparency, ink within the
    paper's limit, black-only masks, and QR codes that actually scan.
 
+### What `posts-redes-sociais` does (social media)
+
+1. Asks the destination, the platforms and formats, how many variations, the style and
+   the AI provider.
+2. Collects your material **step by step**: logo (SVG or PNG), photos, phrases, website
+   or PDF. Everything goes into a `briefing.md`; images are generated **only at the
+   end**.
+3. Marketing and psychology agents (short, mobile-first versions) plus an **art
+   director** who writes one complete prompt per piece: exact text, the role of each
+   reference image, layout, safe areas.
+4. Generates with your **logo and photos as reference images**. In testing, OpenAI's
+   best model reproduced the logo faithfully and rendered Portuguese text with accents
+   correctly.
+5. **Checks every image**: text letter by letter, logo, photos, safe areas. It fixes
+   only the wrong part with an AI edit; nothing wrong is delivered.
+6. Finalizes to the exact pixels of each platform (PNG + JPG, sRGB), with safe-area and
+   phone-size previews, plus captions, hashtags and alt text.
+
 ### Installation
 
 **With [skills.sh](https://skills.sh)** (Claude Code, Cursor, Codex and others):
 
 ```bash
-npx skills add Lucas-Varga/flyer-cmyk-skill --skill impresso-grafica -a claude-code -g
+npx skills add Lucas-Varga/flyer-cmyk-skill --skill impresso-grafica posts-redes-sociais -a claude-code -g
 ```
 
-Without `-g`, the skill is installed only in the current project (`.claude/skills/`).
+Install just one by naming only it after `--skill`. Without `-g`, the skill is installed only in the current project (`.claude/skills/`).
 
 **As a Claude Code plugin** (updates through the marketplace and can be disabled without
-deleting it; the skill shows up as `flyer-cmyk:impresso-grafica`):
+deleting it; the skills show up as `flyer-cmyk:impresso-grafica` and `flyer-cmyk:posts-redes-sociais`):
 
 ```
 /plugin marketplace add Lucas-Varga/flyer-cmyk-skill
@@ -101,10 +135,10 @@ drop it into a conversation in the Claude app and accept the plugin in the previ
 > Plugins tab lists the plugins on your **claude.ai account**. These are two separate
 > places.
 
-**Manual:** copy `plugins/flyer-cmyk/skills/impresso-grafica` to `~/.claude/skills/`.
+**Manual:** copy the folders in `plugins/flyer-cmyk/skills/` to `~/.claude/skills/`.
 
 Then just ask: *"create an A5 double-sided flyer for our gym's grand opening to send to
-the print shop"*.
+the print shop"* or *"create Instagram posts for our grand opening"*.
 
 ### AI images (optional)
 
@@ -192,7 +226,12 @@ scripts/empacotar-plugin.sh      # builds flyer-cmyk.plugin for the Claude app
 plugins/flyer-cmyk/              # the plugin: only this is downloaded on install
 ├── .claude-plugin/              # plugin.json + icon.png
 ├── README.md
-└── skills/impresso-grafica/
+├── skills/posts-redes-sociais/      # social media (AI images with your references)
+│   ├── SKILL.md
+│   ├── scripts/                     # gerar_imagem.py, preparar_referencia.py, finalizar_post.py
+│   ├── assets/                      # briefing-social.modelo.md, env.exemplo
+│   └── references/                  # formatos-redes.md, prompts-agentes-social.md
+└── skills/impresso-grafica/         # print
     ├── SKILL.md                     # the guided flow Claude follows
     ├── scripts/
     │   ├── impressao.py             # artwork: CMYK/Pantone, gradients, outlined text, effects, finishes
@@ -208,7 +247,8 @@ plugins/flyer-cmyk/              # the plugin: only this is downloaded on instal
     └── references/
         ├── prompts-agentes.md       # prompts for the marketing, psychology and design agents
         └── producao-grafica.md      # paper, formats, color, gradients, Pantone, effects, finishes, AI, PDF/X
-exemplos/academia-inauguracao/   # full test flyer: agent documents, montar.py, PDFs
+exemplos/academia-inauguracao/   # full test: print flyer (agent documents, montar.py, PDFs)
+                                 # and redes/ (social posts: briefing, agents, prompts, final images)
 ```
 
 ### Limits
@@ -230,11 +270,19 @@ exemplos/academia-inauguracao/   # full test flyer: agent documents, montar.py, 
 
 ## Português
 
-**Skill para o Claude criar flyers e impressos promocionais prontos para a gráfica, para
-qualquer campanha: CMYK e Pantone de verdade, degradês, acabamentos especiais, imagens com
-IA e PDF/X-1a validado.**
+**Duas skills do Claude para peças promocionais de qualquer campanha, trabalhando com
+agentes de marketing, psicologia de marketing e design:**
 
-### O que ela faz
+| Skill | Para | Resultado | Tempo |
+|---|---|---|---|
+| `impresso-grafica` | **impressão** (flyer, panfleto, folder, cartaz, cartão) | arte vetorial em CMYK/Pantone de verdade, degradês, acabamentos especiais, PDF/X-1a validado + máscaras de acabamento | 30–60 min |
+| `posts-redes-sociais` | **redes sociais / digital** (Instagram feed e Stories, Facebook, WhatsApp, LinkedIn…) | imagens geradas com IA usando **o seu logo e as suas fotos como referência**, tamanho exato de cada rede, texto conferido, legenda, hashtags e texto alternativo | 10–20 min |
+
+As duas começam perguntando **para onde vai a peça**: impressão, redes sociais ou
+**ambos**. Em "ambos", o impresso é feito primeiro, e os posts reaproveitam o mesmo
+briefing, os documentos dos agentes e as imagens aprovadas.
+
+### O que a `impresso-grafica` faz (impressão)
 
 Você pede, por exemplo, *"faz um flyer da inauguração da minha loja para mandar para a
 gráfica"*, e o Claude:
@@ -280,18 +328,35 @@ gráfica"*, e o Claude:
    tinta respeita o limite do papel, que as máscaras usam só preto e que os QR codes
    são lidos.
 
+### O que a `posts-redes-sociais` faz (redes sociais)
+
+1. Pergunta o destino, as redes e formatos, quantas variações, o estilo e o provedor de
+   IA.
+2. Coleta o seu material **passo a passo**: logo (SVG ou PNG), fotos, frases, site ou
+   PDF. Tudo vai para um `briefing.md`; as imagens só são geradas **no final**.
+3. Agentes de marketing e psicologia (versões curtas, pensadas para o celular) e um
+   **diretor de arte** que escreve um prompt completo por peça: texto exato, papel de
+   cada imagem de referência, layout, áreas seguras.
+4. Gera com o **seu logo e as suas fotos como imagens de referência**. Nos testes, o
+   melhor modelo da OpenAI reproduziu o logo com fidelidade e escreveu o português com
+   acentos corretamente.
+5. **Confere cada imagem**: texto letra por letra, logo, fotos, áreas seguras. Corrige só
+   o trecho errado com edição por IA; nada sai com erro.
+6. Finaliza no tamanho exato de cada rede (PNG + JPG, sRGB), com prévia das áreas seguras
+   e de celular, mais legenda, hashtags e texto alternativo.
+
 ### Instalação
 
 **Com o [skills.sh](https://skills.sh)** (Claude Code, Cursor, Codex e outros):
 
 ```bash
-npx skills add Lucas-Varga/flyer-cmyk-skill --skill impresso-grafica -a claude-code -g
+npx skills add Lucas-Varga/flyer-cmyk-skill --skill impresso-grafica posts-redes-sociais -a claude-code -g
 ```
 
-Sem `-g`, a skill fica só no projeto atual (`.claude/skills/`).
+Para instalar só uma, cite só ela depois de `--skill`. Sem `-g`, a skill fica só no projeto atual (`.claude/skills/`).
 
 **Como plugin do Claude Code** (atualiza pelo marketplace e pode ser desativado sem
-apagar; a skill aparece como `flyer-cmyk:impresso-grafica`):
+apagar; as skills aparecem como `flyer-cmyk:impresso-grafica` e `flyer-cmyk:posts-redes-sociais`):
 
 ```
 /plugin marketplace add Lucas-Varga/flyer-cmyk-skill
@@ -313,11 +378,10 @@ plano tiver).
 > Plugins instalados com `/plugin` ficam só no Claude Code daquele computador. A aba
 > Plugins do app mostra os plugins da sua **conta no claude.ai**. São lugares diferentes.
 
-**Manual:** copie a pasta `plugins/flyer-cmyk/skills/impresso-grafica` para
-`~/.claude/skills/`.
+**Manual:** copie as pastas de `plugins/flyer-cmyk/skills/` para `~/.claude/skills/`.
 
 Depois é só pedir: *"crie um flyer A5 frente e verso da inauguração da nossa academia
-para mandar para a gráfica"*.
+para mandar para a gráfica"* ou *"crie posts para o Instagram da nossa inauguração"*.
 
 ### Imagens com IA (opcional)
 

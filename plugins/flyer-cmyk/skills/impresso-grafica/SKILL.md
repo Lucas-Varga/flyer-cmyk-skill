@@ -12,7 +12,8 @@ description: >-
   mais o PDF/X-1a validado para impressão. Use sempre que o usuário pedir algo para
   imprimir, como "flyer para a gráfica", "panfleto", "arte em CMYK", "PDF para
   impressão", "folder", "cartaz", "material impresso da campanha" ou "flyer de
-  inauguração", mesmo que não diga "skill" nem "gráfica".
+  inauguração", mesmo que não diga "skill" nem "gráfica". Se a peça for só para redes
+  sociais ou meios digitais, use a skill posts-redes-sociais.
 ---
 
 # Impresso para gráfica
@@ -56,6 +57,21 @@ em linguagem simples: ele pode não ser da área gráfica. Logo no início, diga
 tempo o processo leva no total (cerca de 30 a 60 minutos, a maior parte com os agentes
 trabalhando sozinhos) e quais etapas vão pedir alguma ação dele (decisões, dados,
 aprovação das imagens e da arte).
+
+### 0. Destino da peça
+
+Se o pedido não deixar claro, a primeira pergunta é para onde vai a peça (múltipla
+escolha):
+- **Impressão** (gráfica): siga esta skill.
+- **Redes sociais / digital** (post, story, WhatsApp, LinkedIn): use a skill
+  `posts-redes-sociais`. É feita inteira com IA de imagem, muito mais rápida (de 10 a 20
+  minutos), e o material do usuário entra como referência.
+- **Ambos:** faça o impresso aqui. No fim, com o mesmo `briefing.md`, os documentos dos
+  agentes e as imagens aprovadas, siga a `posts-redes-sociais` para gerar os posts, sem
+  perguntar de novo o que já está no briefing.
+
+Se o usuário pedir uma "arte" ou um "flyer" sem dizer o destino, pergunte; não suponha
+impressão.
 
 ### 1. Decisões guiadas
 

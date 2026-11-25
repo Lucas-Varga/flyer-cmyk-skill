@@ -1,0 +1,18 @@
+{
+  "formato": "instagram-feed",
+  "descricao": "Instagram feed retrato 4:5 (o mais visto)",
+  "px": [
+    1080,
+    1350
+  ],
+  "origem_px": [
+    1088,
+    1360
+  ],
+  "ampliada": false,
+  "corte_percentual": 0.0,
+  "interface_cobre_px": {
+    "topo": 0,
+    "base": 0
+  }
+}

@@ -20,6 +20,7 @@ Modos:
             --ia: com IA, recupera detalhe, mas pode alterar pequenos detalhes; confira
             gerar_imagem.py melhorar --imagem materiais/foto.jpg --mm 100x80 --saida fotos/foto.png
 
+Tamanho: --mm LxA (impressão, com --dpi) ou --px LxA (redes sociais, pixels finais).
 Opções comuns: --provedor openai|google|stability, --modelo auto|<id>, --qualidade high,
 --dpi 300, --permitir-texto (por padrão a IA é instruída a não pôr texto nem logos).
 
@@ -104,11 +105,15 @@ def _proporcao(mm) -> str:
     return min(PROPORCOES, key=lambda k: abs(PROPORCOES[k] - r))
 
 
-def _tentativas(mm, dpi):
+def _tentativas(mm, dpi, px=None):
     r = mm[0] / mm[1]
     base = '1024x1536' if r < 0.85 else '1536x1024' if r > 1.18 else '1024x1024'
     vistos, out = set(), []
-    for t in (_px(mm, dpi), _px(mm, dpi, max_lado=2560), _px(mm, dpi, max_lado=2048), base):
+    primeiros = [_px(mm, dpi), _px(mm, dpi, max_lado=2560), _px(mm, dpi, max_lado=2048)]
+    if px:  # alvo em pixels (redes sociais): arredonda PARA CIMA em múltiplos de 16
+        teto = lambda v: -(-int(v) // 16) * 16
+        primeiros = [(teto(px[0]), teto(px[1]))] + primeiros
+    for t in (*primeiros, base):
         tam = t if isinstance(t, str) else f'{t[0]}x{t[1]}'
         if tam not in vistos:
             vistos.add(tam)
@@ -117,14 +122,14 @@ def _tentativas(mm, dpi):
 
 
 # ── provedores ──────────────────────────────────────────────────────────────
-def openai_imagem(chave, prompt, mm, dpi, modelo, qualidade, imagens=None):
+def openai_imagem(chave, prompt, mm, dpi, modelo, qualidade, imagens=None, px=None):
     from openai import BadRequestError, OpenAI
     cli = OpenAI(api_key=chave)
     if modelo == 'auto':
         modelo = melhor_modelo_openai(cli)
     ultimo = None
     extra = {'input_fidelity': 'high'}  # modelos mais novos já preservam e recusam o parâmetro
-    for tam in _tentativas(mm, dpi):
+    for tam in _tentativas(mm, dpi, px):
         try:
             if imagens:
                 arqs = [open(p, 'rb') for p in imagens]
@@ -158,7 +163,7 @@ def openai_imagem(chave, prompt, mm, dpi, modelo, qualidade, imagens=None):
     raise ultimo
 
 
-def google_imagem(chave, prompt, mm, dpi, modelo, qualidade, imagens=None):
+def google_imagem(chave, prompt, mm, dpi, modelo, qualidade, imagens=None, px=None):
     import httpx
     prop = _proporcao(mm)
     partes = [{'text': prompt}]
@@ -180,7 +185,7 @@ def google_imagem(chave, prompt, mm, dpi, modelo, qualidade, imagens=None):
     raise RuntimeError('Google não devolveu imagem (verifique o modelo e a política de conteúdo)')
 
 
-def stability_imagem(chave, prompt, mm, dpi, modelo, qualidade, imagens=None):
+def stability_imagem(chave, prompt, mm, dpi, modelo, qualidade, imagens=None, px=None):
     import httpx
     if imagens:
         raise RuntimeError('editar/melhorar com IA: use --provedor openai ou google')
@@ -230,7 +235,12 @@ def main():
     ap.add_argument('--prompt', default='')
     ap.add_argument('--imagem', nargs='*', default=[], help='imagem(ns) do usuário (editar/melhorar)')
     ap.add_argument('--saida', required=True)
-    ap.add_argument('--mm', required=True, help='tamanho de uso na arte, ex.: 154x216')
+    ap.add_argument('--mm', default=None, help='tamanho de uso na arte impressa, ex.: 154x216')
+    ap.add_argument('--px', default=None,
+                    help='tamanho final em pixels (redes sociais), ex.: 1080x1350; gera no múltiplo '
+                         'de 16 logo acima (recorte final com finalizar_post.py)')
+    ap.add_argument('--escala', type=float, default=1.0,
+                    help='com --px: gera maior (ex.: 1.5) para texto mais nítido após reduzir')
     ap.add_argument('--provedor', default='openai', choices=list(PROVEDORES))
     ap.add_argument('--modelo', default=None, help='auto (padrão no openai) ou um id')
     ap.add_argument('--qualidade', default='high', help='openai: low|medium|high')
@@ -241,7 +251,15 @@ def main():
                     help='não pedir "sem texto" (a IA erra letras; deixe o texto na arte)')
     a = ap.parse_args()
 
-    mm = tuple(float(v) for v in a.mm.lower().split('x'))
+    px = None
+    if a.px:
+        px = tuple(float(v) * a.escala for v in a.px.lower().split('x'))
+        mm = tuple(v * 25.4 / 300 for v in px)  # equivalente a 300 dpi
+        a.dpi = 300
+    elif a.mm:
+        mm = tuple(float(v) for v in a.mm.lower().split('x'))
+    else:
+        sys.exit('informe --mm (impressão) ou --px (redes sociais)')
     if a.modo in ('editar', 'melhorar') and not a.imagem:
         sys.exit('informe --imagem')
     if a.modo == 'gerar' and not a.prompt:
@@ -266,7 +284,7 @@ def main():
         chave = ler_chave(prov, a.env)
         print(f'{a.modo.capitalize()} com {prov}/{modelo} para {mm[0]:g}×{mm[1]:g} mm…')
         dados, modelo, meta = PROVEDORES[prov](chave, prompt, mm, a.dpi, modelo, a.qualidade,
-                                               a.imagem if a.modo != 'gerar' else None)
+                                               a.imagem if a.modo != 'gerar' else None, px)
 
     saida = Path(a.saida)
     saida.parent.mkdir(parents=True, exist_ok=True)
@@ -279,6 +297,9 @@ def main():
             'origem': a.imagem, 'pixels': [w, h], 'uso_mm': list(mm), 'ppi_no_uso': round(ppi),
             'gerado_em': dt.datetime.now().isoformat(), **meta}
     saida.with_suffix('.json').write_text(json.dumps(info, ensure_ascii=False, indent=2))
+    if px:
+        print(f'OK: {saida} ({w}×{h} px para {a.px}' + (f'; modelo {modelo}' if modelo else '') + ')')
+        return
     print(f'OK: {saida} ({w}×{h} px, {ppi:.0f} ppi em {mm[0]:g}×{mm[1]:g} mm'
           + (f'; modelo {modelo}' if modelo else '') + ')')
     if ppi < 200:
