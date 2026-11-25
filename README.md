@@ -63,16 +63,22 @@ gráfica", e o Claude:
 npx skills add Lucas-Varga/flyer-cmyk-skill --skill impresso-grafica -a claude-code -g
 ```
 
-Sem `-g`, a skill fica só no projeto atual (`.claude/skills/`).
+Sem `-g`, a skill fica só no projeto atual (`.claude/skills/`). É uma skill avulsa: serve
+para Claude Code, Cursor, Codex e outros agentes compatíveis.
 
-**Como plugin do Claude Code:**
+**Como plugin do Claude Code** (atualiza pelo marketplace e pode ser desativado sem
+apagar; a skill aparece como `flyer-cmyk:impresso-grafica`):
 
 ```
 /plugin marketplace add Lucas-Varga/flyer-cmyk-skill
 /plugin install flyer-cmyk@flyer-cmyk-skill
 ```
 
-**Manual:** copie a pasta `skills/impresso-grafica` para `~/.claude/skills/`.
+No terminal: `claude plugin marketplace add Lucas-Varga/flyer-cmyk-skill` e
+`claude plugin install flyer-cmyk@flyer-cmyk-skill`. O download é só da pasta do plugin;
+o exemplo da academia fica apenas no GitHub.
+
+**Manual:** copie a pasta `plugins/flyer-cmyk/skills/impresso-grafica` para `~/.claude/skills/`.
 
 Depois é só pedir: *"crie um flyer A5 frente e verso da inauguração da nossa academia
 para mandar para a gráfica"*.
@@ -80,7 +86,7 @@ para mandar para a gráfica"*.
 ## Imagens com IA (opcional)
 
 Se você escolher gerar imagens, a chave da API fica num arquivo **`.env`** na pasta do
-trabalho, nunca no chat. Use o modelo `skills/impresso-grafica/assets/env.exemplo`:
+trabalho, nunca no chat. Use o modelo `plugins/flyer-cmyk/skills/impresso-grafica/assets/env.exemplo`:
 
 ```
 OPENAI_API_KEY=sua-chave          # OpenAI (gpt-image-2)
@@ -103,7 +109,7 @@ sem erro de digitação. A imagem vai para CMYK com limite de tinta, e o rodapé
 > seguinte.
 
 - macOS com **Python 3.10+** e **Google Chrome** em `/Applications`;
-- pacotes de `skills/impresso-grafica/scripts/requirements.txt` (o Claude cria um
+- pacotes de `plugins/flyer-cmyk/skills/impresso-grafica/scripts/requirements.txt` (o Claude cria um
   ambiente virtual e instala sozinho);
 - para o resultado sair com a sua marca: **logo em SVG vetorial** e as **fontes** (TTF,
   OTF, WOFF2 ou TTC). Sem as fontes da marca, a skill propõe fontes do sistema.
@@ -158,21 +164,25 @@ Pantone, QR codes, PDF CMYK, máscaras, validação e geração de imagens.
 ## Estrutura
 
 ```
-skills/impresso-grafica/
-├── SKILL.md                     # o fluxo guiado que o Claude segue
-├── scripts/
-│   ├── impressao.py             # arte: CMYK/Pantone, degradês, texto em curvas, efeitos, acabamentos
-│   ├── pdf_cmyk.py              # PDF/X-1a CMYK + PDF de máscaras de acabamento
-│   ├── validar_pdf.py           # confere cores, tinta, transparência, caixas e QR
-│   ├── gerar_imagem.py          # imagens com IA (OpenAI / Google / Stability) via .env
-│   ├── previa_svg.sh            # SVG → PNG (Chrome headless)
-│   └── requirements.txt
-├── assets/
-│   ├── exemplo/                 # exemplo simples executável (empresa fictícia)
-│   └── env.exemplo              # modelo do .env
-└── references/
-    ├── prompts-agentes.md       # prompts dos agentes de marketing, psicologia e design
-    └── producao-grafica.md      # papel, formatos, cor, degradê, Pantone, efeitos, acabamentos, IA, PDF/X
+.claude-plugin/marketplace.json  # marketplace do Claude Code (aponta para plugins/flyer-cmyk)
+skills.sh.json                   # diz ao `npx skills add` onde está a skill
+plugins/flyer-cmyk/              # o plugin: só isto é baixado na instalação
+├── .claude-plugin/              # plugin.json + icon.png
+└── skills/impresso-grafica/
+    ├── SKILL.md                     # o fluxo guiado que o Claude segue
+    ├── scripts/
+    │   ├── impressao.py             # arte: CMYK/Pantone, degradês, texto em curvas, efeitos, acabamentos
+    │   ├── pdf_cmyk.py              # PDF/X-1a CMYK + PDF de máscaras de acabamento
+    │   ├── validar_pdf.py           # confere cores, tinta, transparência, caixas e QR
+    │   ├── gerar_imagem.py          # imagens com IA (OpenAI / Google / Stability) via .env
+    │   ├── previa_svg.sh            # SVG → PNG (Chrome headless)
+    │   └── requirements.txt
+    ├── assets/
+    │   ├── exemplo/                 # exemplo simples executável (empresa fictícia)
+    │   └── env.exemplo              # modelo do .env
+    └── references/
+        ├── prompts-agentes.md       # prompts dos agentes de marketing, psicologia e design
+        └── producao-grafica.md      # papel, formatos, cor, degradê, Pantone, efeitos, acabamentos, IA, PDF/X
 exemplos/academia-inauguracao/   # flyer de teste completo: documentos dos agentes, montar.py, PDFs
 ```
 

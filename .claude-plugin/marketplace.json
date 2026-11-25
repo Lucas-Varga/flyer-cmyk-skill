@@ -1,11 +1,12 @@
 {
   "name": "flyer-cmyk-skill",
+  "description": "Skill para o Claude criar flyers e impressos promocionais prontos para a gráfica: CMYK e Pantone, degradês, acabamentos especiais, imagens com IA e PDF/X-1a validado.",
   "owner": { "name": "Lucas Varga" },
   "plugins": [
     {
       "name": "flyer-cmyk",
-      "source": "./",
-      "description": "Flyers e impressos promocionais prontos para a gráfica (CMYK, PDF/X-1a)."
+      "source": "./plugins/flyer-cmyk",
+      "description": "Flyers e impressos promocionais prontos para a gráfica (CMYK, Pantone, acabamentos, PDF/X-1a), com agentes de marketing, psicologia e design."
     }
   ]
 }
