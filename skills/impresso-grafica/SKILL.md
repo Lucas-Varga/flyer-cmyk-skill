@@ -1,6 +1,18 @@
 ---
 name: impresso-grafica
-description: Cria flyers e peças impressas promocionais prontas para a gráfica (flyer, panfleto, folder, cartão, cartaz, voucher, convite, cardápio, canhoto destacável) para qualquer campanha, como inauguração, promoção, evento, lançamento ou indicação. Guia o usuário nas decisões de formato (A6, A5, A4, DL, 10x15, quadrado ou medida personalizada), papel, acabamentos especiais (verniz UV localizado, hot stamping, relevo, tinta branca, faca especial) e geração opcional de imagens com IA (OpenAI, Google, Stability, com a chave no .env). Usa agentes de marketing, psicologia de marketing e design e gera a arte com cores CMYK e Pantone, degradês, efeitos em texto e foto e texto em curvas, mais o PDF/X-1a validado para impressão. Use sempre que o usuário pedir algo para imprimir: "flyer para a gráfica", "panfleto", "arte em CMYK", "PDF para impressão", "folder", "cartaz", "material impresso da campanha", "flyer de inauguração", mesmo que não diga "skill" nem "gráfica".
+description: >-
+  Cria flyers e peças impressas promocionais prontas para a gráfica (flyer, panfleto,
+  folder, cartão, cartaz, voucher, convite, cardápio, canhoto destacável) para qualquer
+  campanha, como inauguração, promoção, evento, lançamento ou indicação. Guia o usuário
+  nas decisões de formato (A6, A5, A4, DL, 10x15, quadrado ou medida personalizada),
+  papel, acabamentos especiais (verniz UV localizado, hot stamping, relevo, tinta branca,
+  faca especial) e geração opcional de imagens com IA (OpenAI, Google, Stability, com a
+  chave no .env). Usa agentes de marketing, psicologia de marketing e design e gera a
+  arte com cores CMYK e Pantone, degradês, efeitos em texto e foto e texto em curvas,
+  mais o PDF/X-1a validado para impressão. Use sempre que o usuário pedir algo para
+  imprimir, como "flyer para a gráfica", "panfleto", "arte em CMYK", "PDF para
+  impressão", "folder", "cartaz", "material impresso da campanha" ou "flyer de
+  inauguração", mesmo que não diga "skill" nem "gráfica".
 ---
 
 # Impresso para gráfica
