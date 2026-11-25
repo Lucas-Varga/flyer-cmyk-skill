@@ -1,0 +1,10 @@
+fonttools
+brotli
+uharfbuzz
+segno
+reportlab
+pikepdf
+pymupdf
+opencv-python-headless
+pillow
+numpy

@@ -1,0 +1,11 @@
+{
+  "name": "flyer-cmyk-skill",
+  "owner": { "name": "Lucas Varga" },
+  "plugins": [
+    {
+      "name": "flyer-cmyk",
+      "source": "./",
+      "description": "Flyers e impressos promocionais prontos para a gráfica (CMYK, PDF/X-1a)."
+    }
+  ]
+}

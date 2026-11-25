@@ -1,0 +1,8 @@
+{
+  "name": "flyer-cmyk",
+  "version": "1.0.0",
+  "description": "Flyers e impressos promocionais prontos para a gráfica: agentes de marketing, psicologia e design; SVG com CMYK e texto em curvas; PDF/X-1a CMYK nativo validado.",
+  "author": { "name": "Lucas Varga" },
+  "license": "MIT",
+  "keywords": ["flyer", "cmyk", "print", "pdf-x", "grafica", "impressao", "marketing"]
+}
