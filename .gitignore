@@ -7,3 +7,4 @@ saida/
 .env.*
 !.env.exemplo
 .cache/
+dist/
